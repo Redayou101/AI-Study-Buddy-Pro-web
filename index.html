@@ -1,42 +1,70 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Study Buddy | واجهة الويب</title>
+    <title>AI Study Buddy Pro</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <div class="logo">🎓</div>
-            <h1>AI Study Buddy <span class="badge">Pro</span></h1>
-            <p>حول دروسك الطويلة إلى ملخصات ذكية في ثوانٍ</p>
-        </header>
 
-        <main>
-            <div class="input-section">
-                <label for="userInput">الصق نص الدرس أو المقال هنا:</label>
-                <textarea id="userInput" placeholder="مثلاً: الخلية هي وحدة بناء الكائن الحي..."></textarea>
-                <button id="analyzeBtn" onclick="processStudyText()">تحليل النص بالذكاء الاصطناعي 🚀</button>
+    <nav>
+        <div class="logo">AI Study Buddy<span>.pro</span></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#app" class="nav-btn">Launch App</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Master Your Studies with <span class="gold-text">AI Intelligence</span></h1>
+            <p>Summarize complex lessons instantly using our advanced neural engine.</p>
+            <a href="#app" class="main-btn">Start Summarizing</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>What is AI Study Buddy?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Smart Analysis</h3>
+                <p>Deeply scans your text to extract the most important keywords.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Time Saving</h3>
+                <p>Reduces 1 hour of reading into 5 minutes of focused summary.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="app" class="app-section">
+        <div class="app-box">
+            <h2>Analyze Your Content</h2>
+            <textarea id="userInput" placeholder="Paste your study materials here..."></textarea>
+            <button id="analyzeBtn" onclick="processText()">Analyze Now 🚀</button>
+            
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p>AI is thinking...</p>
             </div>
 
-            <div id="loader" class="hidden">جاري معالجة البيانات... ⏳</div>
-
-            <div id="resultSection" class="result-card hidden">
-                <h3>📊 التقرير الذكي:</h3>
-                <div id="summaryOutput"></div>
-                <hr>
-                <div class="stats">
+            <div id="resultBox" class="hidden">
+                <div class="result-header">Results Found</div>
+                <div id="summary"></div>
+                <div class="metrics">
                     <span id="wordCount"></span> | <span id="timeSaved"></span>
                 </div>
             </div>
-        </main>
+        </div>
+    </section>
 
-        <footer>
-            <p>تم التطوير بكل حب للمشاركة في مسابقات الطلاب العالمية ✨</p>
-        </footer>
-    </div>
+    <footer>
+        <p>© 2026 AI Study Buddy Pro | Developed for Global Competitions</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
