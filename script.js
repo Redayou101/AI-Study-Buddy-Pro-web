@@ -1,5 +1,7 @@
+// تحديد النمط الافتراضي
 let currentMode = 'summarize';
 
+// وظيفة التبديل بين الأنماط (تعدد المهام)
 function setMode(mode) {
     currentMode = mode;
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -15,12 +17,14 @@ function runAnalysis() {
     const resultTitle = document.getElementById('resultTitle');
     const btn = document.getElementById('actionBtn');
 
-    if (input.trim().length < 20) {
-        alert("Your Excellency Redha, the text is too short for a professional analysis!");
+    // التحقق من النص
+    if (input.trim().length < 10) {
+        alert("Your Excellency Redha, please enter some text for analysis.");
         return;
     }
 
-    btn.innerText = "RUNNING REDHA'S LOGIC ENGINE...";
+    // تأثير التحميل الفخم
+    btn.innerText = "CONSULTING REDHA'S ENGINE...";
     btn.disabled = true;
 
     setTimeout(() => {
@@ -28,40 +32,29 @@ function runAnalysis() {
         btn.disabled = false;
         resultBox.classList.remove('hidden');
 
-        // استخراج أهم جملة من نص المستخدم لجعل النتيجة تبدو حقيقية
-        const sentences = input.split(/[.!?]/).filter(s => s.trim().length > 5);
-        const mainPoint = sentences[0] || "this topic";
-
+        // منطق التحليل الذكي (بدون API)
+        const firstLine = input.split('\n')[0].substring(0, 50);
         let response = "";
 
         if (currentMode === 'summarize') {
             resultTitle.innerText = "✦ EXECUTIVE SUMMARY";
-            response = `Redha's Analysis: The core focus of your material is on "${mainPoint}". \n\nStrategic Summary: To master this efficiently, prioritize the relationship between the key variables mentioned. This content is essential for a deep understanding of the subject matter.`;
-        } 
-        else if (currentMode === 'quiz') {
-            resultTitle.innerText = "✦ KNOWLEDGE CHECK (QUIZ)";
-            response = `1. Based on your text, what is the significance of "${mainPoint}"?\n2. Identify the primary evidence used to support the main argument.\n3. How would you apply the concepts from this text in a real-world scenario?`;
-        } 
-        else if (currentMode === 'simplify') {
-            resultTitle.innerText = "✦ SIMPLIFIED EXPLANATION";
-            response = `Think of "${mainPoint}" as the foundation of a building. Everything else you read is just adding floors on top. Keep it simple: focus on the base first, and the rest will make sense!`;
+            response = `Analysis of "${firstLine}...": \n\nThis material covers essential academic foundations. Redha's Engine recommends focusing on the structural relationships within the text to achieve 95% retention.`;
+        } else if (currentMode === 'quiz') {
+            resultTitle.innerText = "✦ SMART QUIZ";
+            response = `1. What is the primary objective of "${firstLine}"?\n2. Identify three key supporting details from the provided text.\n3. How does this concept integrate with your existing knowledge?`;
+        } else if (currentMode === 'simplify') {
+            resultTitle.innerText = "✦ SIMPLIFIED (ELI5)";
+            response = `Think of this like building a Lego tower. You've provided the base blocks "${firstLine}". To make it stand, you just need to connect the pieces we identified in your text!`;
         }
 
-        // تأثير الكتابة (Typing Effect)
-        typeWriter(aiText, response);
+        // إظهار النتيجة بتأثير سلس
+        aiText.innerText = response;
         resultBox.scrollIntoView({ behavior: 'smooth' });
-    }, 1200);
+    }, 1000);
 }
 
-function typeWriter(element, text) {
-    element.innerHTML = "";
-    let i = 0;
-    const timer = setInterval(() => {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-        } else {
-            clearInterval(timer);
-        }
-    }, 20);
+function copyResult() {
+    const text = document.getElementById('aiText').innerText;
+    navigator.clipboard.writeText(text);
+    alert("Royal insights copied to clipboard!");
 }
