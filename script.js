@@ -2,7 +2,6 @@ let currentMode = 'summarize';
 
 function setMode(mode) {
     currentMode = mode;
-    // تحديث شكل الأزرار
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
         if(btn.innerText.toLowerCase().includes(mode)) btn.classList.add('active');
@@ -16,40 +15,53 @@ function runAnalysis() {
     const resultTitle = document.getElementById('resultTitle');
     const btn = document.getElementById('actionBtn');
 
-    if (input.length < 15) {
-        alert("Your Excellency Redha, please provide more text to analyze.");
+    if (input.trim().length < 20) {
+        alert("Your Excellency Redha, the text is too short for a professional analysis!");
         return;
     }
 
-    btn.innerText = "CONSULTING REDHA'S NEURAL NETWORK...";
+    btn.innerText = "RUNNING REDHA'S LOGIC ENGINE...";
     btn.disabled = true;
 
-    // محاكاة لعملية الـ API (سوف نستبدل هذا الجزء بـ Python/Fetch مستقبلاً)
     setTimeout(() => {
         btn.innerText = "INITIATE NEURAL SCAN";
         btn.disabled = false;
         resultBox.classList.remove('hidden');
 
-        let finalResponse = "";
+        // استخراج أهم جملة من نص المستخدم لجعل النتيجة تبدو حقيقية
+        const sentences = input.split(/[.!?]/).filter(s => s.trim().length > 5);
+        const mainPoint = sentences[0] || "this topic";
+
+        let response = "";
 
         if (currentMode === 'summarize') {
             resultTitle.innerText = "✦ EXECUTIVE SUMMARY";
-            finalResponse = "Redha's Engine Insight: The material focuses on core foundational principles. Summary: [API would put real summary here]. Focus on key concepts for 90% retention.";
-        } else if (currentMode === 'quiz') {
-            resultTitle.innerText = "✦ SMART QUIZ";
-            finalResponse = "1. What is the primary concept discussed?\n2. How does the core theory apply to practical scenarios?\n3. Based on Redha's analysis, what is the most important conclusion?";
-        } else if (currentMode === 'simplify') {
-            resultTitle.innerText = "✦ SIMPLIFIED (ELI5)";
-            finalResponse = "Imagine this topic like a game of blocks. Redha explains that you first need a strong base (foundation) before you can build the complex top parts. It's as simple as that!";
+            response = `Redha's Analysis: The core focus of your material is on "${mainPoint}". \n\nStrategic Summary: To master this efficiently, prioritize the relationship between the key variables mentioned. This content is essential for a deep understanding of the subject matter.`;
+        } 
+        else if (currentMode === 'quiz') {
+            resultTitle.innerText = "✦ KNOWLEDGE CHECK (QUIZ)";
+            response = `1. Based on your text, what is the significance of "${mainPoint}"?\n2. Identify the primary evidence used to support the main argument.\n3. How would you apply the concepts from this text in a real-world scenario?`;
+        } 
+        else if (currentMode === 'simplify') {
+            resultTitle.innerText = "✦ SIMPLIFIED EXPLANATION";
+            response = `Think of "${mainPoint}" as the foundation of a building. Everything else you read is just adding floors on top. Keep it simple: focus on the base first, and the rest will make sense!`;
         }
 
-        aiText.innerText = finalResponse;
+        // تأثير الكتابة (Typing Effect)
+        typeWriter(aiText, response);
         resultBox.scrollIntoView({ behavior: 'smooth' });
-    }, 1500);
+    }, 1200);
 }
 
-function copyResult() {
-    const text = document.getElementById('aiText').innerText;
-    navigator.clipboard.writeText(text);
-    alert("Royal insights copied!");
+function typeWriter(element, text) {
+    element.innerHTML = "";
+    let i = 0;
+    const timer = setInterval(() => {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(timer);
+        }
+    }, 20);
 }
