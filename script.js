@@ -1,54 +1,73 @@
-// Function to handle the Royal AI Processing
-function royalProcess() {
-    const textInput = document.getElementById('userInput').value;
+// Function to initiate the Elite AI Analysis
+function initiateEliteAnalysis() {
+    const userInput = document.getElementById('userInput');
     const loader = document.getElementById('loader');
     const resultContainer = document.getElementById('resultContainer');
-    const summaryText = document.getElementById('summaryText');
+    const summaryOutput = document.getElementById('summaryOutput');
+    const wordCountMetric = document.getElementById('wordCountMetric');
+    const timeSavedMetric = document.getElementById('timeSavedMetric');
 
-    // 1. Validation: Ensure text is long enough
-    if (textInput.trim().length < 50) {
-        alert("The Imperial Engine requires a more substantial text to perform a royal analysis. (Minimum 50 characters)");
+    const text = userInput.value.trim(); // Get and trim the input text
+
+    // 1. Input Validation: Ensure text is substantial enough
+    if (text.length < 100) {
+        alert("For an elite analysis, please provide at least 100 characters of academic content.");
+        userInput.focus(); // Focus on the input field for user convenience
         return;
     }
 
-    // 2. Visual Feedback: Show loader and hide previous results
+    // 2. UI Feedback: Show loader, hide previous results
     loader.classList.remove('hidden');
     resultContainer.classList.add('hidden');
-
-    // 3. Simulate Neural Analysis (1.8 seconds delay for "Feel")
+    
+    // Simulate complex AI processing delay
     setTimeout(() => {
+        // Hide loader
         loader.classList.add('hidden');
+        
+        // 3. AI Logic Simulation: Advanced Summarization
+        const sentences = text.split(/[.!?\n]/).filter(s => s.trim().length > 30); // Filter out very short sentences
+        
+        // Prioritize sentences with keywords (simple simulation)
+        const keywords = ['key', 'important', 'core', 'principle', 'concept', 'main', 'conclusion', 'result'];
+        let prioritizedSentences = sentences.filter(s => keywords.some(k => s.toLowerCase().includes(k)));
+        
+        // If not enough prioritized sentences, take general ones
+        if (prioritizedSentences.length < 3) {
+            prioritizedSentences = sentences;
+        }
+
+        // Take the top 3-5 most relevant sentences for the summary
+        const finalSummary = prioritizedSentences.slice(0, 5).map(s => s.trim()).join('. ') + ".";
+
+        // Calculate metrics
+        const totalWords = text.split(/\s+/).filter(word => word.length > 0).length; // Count actual words
+        const estimatedReadingTime = Math.ceil(totalWords / 200); // Average reading speed 200 words/min
+        const summaryWords = finalSummary.split(/\s+/).filter(word => word.length > 0).length;
+        const summaryReadingTime = Math.ceil(summaryWords / 200);
+        const timeSaved = Math.max(0, estimatedReadingTime - summaryReadingTime);
+
+        // 4. Display Results
+        summaryOutput.innerHTML = finalSummary;
+        wordCountMetric.textContent = `Original Words: ${totalWords}`;
+        timeSavedMetric.textContent = `Time Saved: ${timeSaved} min`;
+        
         resultContainer.classList.remove('hidden');
 
-        // Logic: Extracting meaningful sentences
-        const sentences = textInput.split(/[.!?]/).filter(s => s.trim().length > 15);
-        
-        // Take the first 3 key sentences as a summary
-        const summary = sentences.slice(0, 3).join('. ') + ".";
+        // Smooth scroll to the results section for better UX
+        resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
 
-        // Display results with a premium touch
-        summaryText.innerHTML = `
-            <div class="summary-content">
-                <p style="color: #f1d27b; font-size: 0.9rem; margin-bottom: 10px; letter-spacing: 1px;">GENERTATED INSIGHTS:</p>
-                <p style="line-height: 1.8; font-style: italic;">"${summary}"</p>
-                <div style="margin-top: 20px; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 15px; font-size: 0.8rem; color: #888;">
-                    Analysis Complete | ${textInput.split(' ').length} words processed.
-                </div>
-            </div>
-        `;
-
-        // Smooth scroll to results
-        resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-    }, 1800);
+    }, 2500); // Increased delay for more realistic AI processing feel
 }
 
-// Smooth Scrolling for Navigation Links
+// Smooth Scrolling for Navigation Links (Improved for all anchors)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+        e.preventDefault(); // Prevent default jump
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start' // Scroll to the top of the target section
         });
     });
 });
