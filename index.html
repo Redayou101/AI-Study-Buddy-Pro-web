@@ -3,103 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Study Buddy | Elite Imperial Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>StudyAI Buddy | Elite Edition</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="bg-overlay"></div>
+    <div class="luxury-bg"></div>
 
-    <nav class="royal-nav">
-        <div class="logo">STUDY<span>BUDDY</span> <small>ELITE</small></div>
+    <nav class="main-nav">
+        <div class="logo">STUDY<span>AI</span></div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Philosophy</a></li>
-            <li><a href="#ai-app" class="btn-gold">Launch Neural Engine</a></li>
+            <li><a href="#hero">The Vision</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#dashboard" class="cta-nav">Open Engine</a></li>
         </ul>
     </nav>
 
-    <header id="home" class="hero">
+    <section id="hero" class="hero-section">
         <div class="hero-content">
-            <h4 class="fade-in">WELCOME TO THE FUTURE OF LEARNING</h4>
-            <h1 class="glow-text">Master Your Studies with <br><span class="gold-gradient">Imperial AI</span></h1>
-            <p>Collaborating with <strong>Gemini Intelligence</strong> to distill complex knowledge into pure insight.</p>
-            <div class="hero-btns">
-                <a href="#ai-app" class="main-btn">Start Summarizing</a>
-                <a href="#features" class="sec-btn">How it Works</a>
-            </div>
-        </div>
-    </header>
-
-    <section id="features" class="features">
-        <div class="section-title">
-            <h2 class="gold-text">Our Neural Philosophy</h2>
-            <div class="divider"></div>
-        </div>
-        <div class="features-grid">
-            <div class="f-card">
-                <div class="icon">⚡</div>
-                <h3>Instant Distillation</h3>
-                <p>We don't just shorten text; we extract the core essence of your lessons in milliseconds.</p>
-            </div>
-            <div class="f-card">
-                <div class="icon">💎</div>
-                <h3>Royal Precision</h3>
-                <p>Powered by advanced algorithms to ensure no critical detail is lost in transition.</p>
-            </div>
-            <div class="f-card">
-                <div class="icon">🛡️</div>
-                <h3>Elite Privacy</h3>
-                <p>Your academic data is processed through secure neural layers, keeping your research private.</p>
+            <span class="badge">Gemini-Powered Intelligence</span>
+            <h1>The Gold Standard of <br><span class="gold-text">Academic Excellence</span></h1>
+            <p>I am your AI companion. Let's transform your complex textbooks into brilliant, concise insights together.</p>
+            <div class="hero-actions">
+                <a href="#dashboard" class="btn-primary">Get Started</a>
+                <a href="#about" class="btn-outline">Learn More</a>
             </div>
         </div>
     </section>
 
-    <section id="ai-app" class="app-container">
-        <div class="glass-panel">
-            <div class="panel-header">
-                <div class="ai-status">
-                    <span class="pulse-dot"></span> 
-                    AI System: <strong>Gemini Active</strong>
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="gold-text">Crafted for the Elite</h2>
+                    <p>This isn't just a summarizer. It's a neural bridge between raw information and deep understanding. Designed with a royal aesthetic to match the prestige of your education.</p>
+                    <ul class="features-list">
+                        <li><span>✦</span> Instant Neural Synthesis</li>
+                        <li><span>✦</span> Royal Navy & Gold Interface</li>
+                        <li><span>✦</span> Gemini AI Personality Integration</li>
+                    </ul>
                 </div>
-                <h2>Neural Processor v3.0</h2>
-            </div>
-            
-            <div class="input-area">
-                <textarea id="userInput" placeholder="Paste your massive study material, research paper, or complex article here..."></textarea>
-                <div class="text-info">Minimum 100 characters for deep analysis</div>
-            </div>
-
-            <button id="processBtn" class="process-btn" onclick="runImperialAI()">
-                <span class="btn-text">Initiate Neural Scan</span>
-                <span class="btn-sparkle"></span>
-            </button>
-
-            <div id="aiLoader" class="loader-wrap hidden">
-                <div class="spinner"></div>
-                <p>Gemini is scanning for core concepts...</p>
-            </div>
-
-            <div id="resultBox" class="result-box hidden">
-                <div class="result-header">
-                    <span class="gold-text">⟡ Executive Summary</span>
-                    <button class="copy-btn" onclick="copyResult()">Copy Insight</button>
-                </div>
-                <div id="summaryText" class="typing-text"></div>
-                <div class="metrics">
-                    <div class="metric-item">Words Processed: <span id="wordCount">0</span></div>
-                    <div class="metric-item">Study Time Saved: <span id="timeSaved">0</span> min</div>
+                <div class="about-visual">
+                    <div class="gold-card-decoration"></div>
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" alt="AI Neural Core">
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="royal-footer">
-        <div class="footer-content">
-            <p>© 2026 AI Study Buddy Elite. Crafted for Excellence.</p>
-            <p>Collaborative Intelligence: <span class="gold-text">Gemini & Redayou101</span></p>
+    <section id="dashboard" class="dashboard-section">
+        <div class="glass-engine">
+            <div class="engine-header">
+                <div class="status">
+                    <span class="dot"></span> System Status: <strong class="gold-text">Active</strong>
+                </div>
+                <h3>Neural Input Dashboard</h3>
+            </div>
+
+            <div class="input-wrapper">
+                <textarea id="userInput" placeholder="Paste your academic material here... Minimum 100 characters for deep analysis."></textarea>
+                <div id="wordCounter" class="counter">0 words</div>
+            </div>
+
+            <button onclick="processAI()" id="mainBtn" class="glow-button">Initiate Neural Analysis</button>
+
+            <div id="aiResponse" class="response-area hidden">
+                <div class="ai-header">
+                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d47353046b33535602ad.svg" alt="Gemini">
+                    <span>Gemini Analysis:</span>
+                </div>
+                <div id="typewriter" class="summary-output"></div>
+                <div class="metrics-row">
+                    <div class="metric">Knowledge Extracted: <span id="knowledgeLevel" class="gold-text">0%</span></div>
+                    <button class="copy-btn" onclick="copyResult()">Copy Result</button>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <footer class="elite-footer">
+        <p>© 2026 StudyAI Buddy. Powered by Gemini. Developed for Champions.</p>
     </footer>
 
     <script src="script.js"></script>
