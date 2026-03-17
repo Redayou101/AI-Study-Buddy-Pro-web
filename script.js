@@ -1,30 +1,37 @@
-function processAnalysis() {
-    const input = document.getElementById('studyInput').value;
-    const resultBox = document.getElementById('resultBox');
-    const output = document.getElementById('aiOutput');
-    const btn = document.getElementById('analyzeBtn');
+function runAnalysis() {
+    const input = document.getElementById('userInput').value;
+    const resultBox = document.getElementById('resultContainer');
+    const aiText = document.getElementById('aiText');
+    const btn = document.getElementById('actionBtn');
 
-    if (input.length < 10) {
-        alert("Please enter more text for Redha's Engine to work!");
+    if (input.length < 15) {
+        alert("Your Excellency Redha, please provide more text to analyze.");
         return;
     }
 
-    btn.innerText = "SCANNING NERUAL PATHS...";
-    
+    // تأثير التحميل
+    btn.innerText = "PROCESSING NEURAL DATA...";
+    btn.disabled = true;
+
     setTimeout(() => {
-        resultBox.classList.remove('hidden');
         btn.innerText = "INITIATE NEURAL SCAN";
+        btn.disabled = false;
         
-        // النتيجة المحسنة
-        const summary = `Redha's AI has synthesized your data. \n\nMain Focus: The provided material explores key academic concepts with a focus on efficiency. \n\nStrategic Insight: To master this content, prioritize the relationship between the core variables mentioned in your text.`;
+        // إظهار النتيجة
+        resultBox.classList.remove('hidden');
         
-        output.innerText = summary;
+        // نص النتيجة (بإمكانك تعديله مستقبلاً)
+        const summary = "Redha's Neural Engine has completed the scan. \n\nKey Insight: Your material emphasizes the importance of core foundational concepts. To maximize learning, Redha suggests focusing on the high-level summary provided and linking it to practical applications.";
+        
+        aiText.innerText = summary;
+        
+        // نزول تلقائي للنتيجة
         resultBox.scrollIntoView({ behavior: 'smooth' });
-    }, 1500);
+    }, 1200);
 }
 
-function copyText() {
-    const text = document.getElementById('aiOutput').innerText;
+function copyResult() {
+    const text = document.getElementById('aiText').innerText;
     navigator.clipboard.writeText(text);
-    alert("Copied to clipboard! Designed by Redha.");
+    alert("Royal insights copied!");
 }
