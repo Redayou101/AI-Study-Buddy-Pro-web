@@ -1,70 +1,58 @@
 function startNeuralAnalysis() {
     const input = document.getElementById('studyInput').value;
-    const btn = document.getElementById('analyzeBtn');
-    const processing = document.getElementById('processing');
     const resultArea = document.getElementById('resultArea');
     const output = document.getElementById('aiSummary');
+    const btn = document.getElementById('analyzeBtn');
 
-    if (input.trim().length < 50) {
-        alert("Your Excellency, the content is too brief. Please provide a more substantial text for a royal analysis.");
+    if (input.trim().length < 20) {
+        alert("Please provide more content for Redha's Engine to analyze!");
         return;
     }
 
-    btn.disabled = true;
-    btn.innerHTML = "Accessing Neural Pathways...";
-    processing.classList.remove('hidden');
-    resultArea.classList.add('hidden');
-
+    // تأثير الانتظار
+    btn.innerText = "Analyzing Neural Data...";
+    btn.style.opacity = "0.5";
+    
     setTimeout(() => {
-        processing.classList.add('hidden');
+        btn.innerText = "Initiate Analysis";
+        btn.style.opacity = "1";
         resultArea.classList.remove('hidden');
-        btn.disabled = false;
-        btn.innerHTML = "Initiate Neural Scan";
 
-        const sentences = input.split(/[.!?]/).filter(s => s.trim().length > 10);
-        const summary = generateSummary(sentences);
-        
-        const wordCount = input.split(' ').length;
-        document.getElementById('savedTime').innerText = Math.round(wordCount / 65);
+        // منطق "التلخيص" - يأخذ أول جملة ويضيف عليها لمسة ذكاء
+        const firstSentence = input.split(/[.!?]/)[0];
+        const resultText = `Redha's AI Analysis Complete:\n\nThe core of your material focuses on "${firstSentence}". Based on this, we can conclude that the primary objective is to streamline the understanding of these academic concepts for better retention. Focus on the foundational elements mentioned in your text for maximum efficiency.`;
 
-        typeWriter(output, summary);
+        // تشغيل تأثير الكتابة
+        typeEffect(output, resultText);
         
-    }, 2800);
+        // التمرير للأسفل لرؤية النتيجة
+        resultArea.scrollIntoView({ behavior: 'smooth' });
+    }, 1500);
 }
 
-function generateSummary(sentences) {
-    const keyWords = ["important", "result", "lead", "because", "main", "core", "finally", "however"];
-    let filtered = sentences.filter(s => keyWords.some(k => s.toLowerCase().includes(k)));
-    
-    if (filtered.length < 2) filtered = sentences.slice(0, 3);
-    
-    return "After a deep neural scan of your material, here is the executive summary:\n\n✦ " + 
-           filtered.map(s => s.trim()).join(".\n\n✦ ") + ".";
-}
-
-function typeWriter(element, text) {
+function typeEffect(element, text) {
     element.innerHTML = "";
     let i = 0;
-    const speed = 25;
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
             i++;
         } else {
-            clearInterval(interval);
+            clearInterval(timer);
         }
-    }, speed);
+    }, 30);
 }
 
+// تحديث عداد الكلمات
 document.getElementById('studyInput').addEventListener('input', function() {
-    const count = this.value.trim().split(/\s+/).filter(w => w.length > 0).length;
-    document.getElementById('wCount').innerText = count;
+    const words = this.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+    document.getElementById('wCount').innerText = words;
 });
 
 function copyToClipboard() {
     const text = document.getElementById('aiSummary').innerText;
     navigator.clipboard.writeText(text);
-    alert("Royal insights copied to clipboard!");
+    alert("Results copied! Great job, Redha.");
 }
 
 function scrollToApp() {
