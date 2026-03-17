@@ -1,31 +1,26 @@
-function processText() {
-    const input = document.getElementById('userInput').value;
+function royalProcess() {
+    const text = document.getElementById('userInput').value;
     const loader = document.getElementById('loader');
     const resultBox = document.getElementById('resultBox');
-    const summaryDiv = document.getElementById('summary');
+    const output = document.getElementById('outputContent');
 
-    if (input.length < 50) {
-        alert("Text too short! Please provide a full lesson for better results.");
+    if (text.length < 50) {
+        alert("Your Majesty, the text is too brief for an imperial analysis.");
         return;
     }
 
     loader.classList.remove('hidden');
     resultBox.classList.add('hidden');
 
-    // Simulate AI Processing
     setTimeout(() => {
         loader.classList.add('hidden');
         resultBox.classList.remove('hidden');
 
-        const words = input.split(' ');
-        const summary = words.slice(0, 40).join(' ') + "..."; // Real Logic: First 40 words
-        
-        summaryDiv.innerHTML = `
-            <p style="color: #d4af37; margin-bottom: 10px;">✨ Summary:</p>
-            <p>${summary}</p>
-        `;
+        const sentences = text.split(/[.!?]/).filter(s => s.trim().length > 10);
+        const summary = sentences.slice(0, 3).join('. ') + ".";
 
-        document.getElementById('wordCount').innerText = `Words: ${words.length}`;
-        document.getElementById('timeSaved').innerText = `Time Saved: ${Math.round(words.length / 60)} min`;
+        output.innerHTML = `<p style="line-height: 1.6; font-style: italic;">"${summary}"</p>`;
+        document.getElementById('wCount').innerText = `Words Processed: ${text.split(' ').length}`;
+        document.getElementById('tSaved').innerText = `Efficiency: High`;
     }, 2000);
 }
