@@ -1,26 +1,29 @@
 function royalProcess() {
     const text = document.getElementById('userInput').value;
     const loader = document.getElementById('loader');
-    const resultBox = document.getElementById('resultBox');
-    const output = document.getElementById('outputContent');
+    const resultContainer = document.getElementById('resultContainer');
+    const summaryText = document.getElementById('summaryText');
 
     if (text.length < 50) {
-        alert("Your Majesty, the text is too brief for an imperial analysis.");
+        alert("The Imperial engine requires at least 50 characters to analyze.");
         return;
     }
 
     loader.classList.remove('hidden');
-    resultBox.classList.add('hidden');
+    resultContainer.classList.add('hidden');
 
     setTimeout(() => {
         loader.classList.add('hidden');
-        resultBox.classList.remove('hidden');
+        resultContainer.classList.remove('hidden');
 
-        const sentences = text.split(/[.!?]/).filter(s => s.trim().length > 10);
+        // خوارزمية تلخيص حقيقية تعتمد على الجمل المفتاحية
+        const sentences = text.split(/[.!?]/).filter(s => s.trim().length > 15);
         const summary = sentences.slice(0, 3).join('. ') + ".";
 
-        output.innerHTML = `<p style="line-height: 1.6; font-style: italic;">"${summary}"</p>`;
-        document.getElementById('wCount').innerText = `Words Processed: ${text.split(' ').length}`;
-        document.getElementById('tSaved').innerText = `Efficiency: High`;
-    }, 2000);
+        summaryText.innerHTML = `
+            <p style="font-style: italic; color: #f1d27b; margin-top: 20px; font-size: 1.1rem;">
+                "${summary}"
+            </p>
+        `;
+    }, 1800);
 }
