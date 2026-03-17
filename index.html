@@ -4,46 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyAI | Redha Younes Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="stars-overlay"></div>
-
+    <div class="stars"></div>
+    
     <nav class="navbar">
         <div class="logo">STUDY<span>AI</span></div>
-        <div class="nav-links">
-            <span class="dev-name">By: Redha Younes</span>
-            <a href="#dashboard" class="launch-btn">Launch Engine</a>
-        </div>
+        <div class="dev-credit">By: Redha Younes Al Sayed Hasan</div>
     </nav>
 
-    <header class="hero">
-        <div class="ai-badge">Lead Developer: Redha Younes Al Sayed Hasan</div>
-        <h1>Imperial <span class="gold-text">Knowledge</span> Synthesis</h1>
-        <p>Transforming complex academic material into pure gold insights.</p>
-    </header>
+    <main class="container">
+        <header class="hero">
+            <h1>Elite <span class="gold">Neural</span> Assistant</h1>
+            <p>Distilling complex knowledge into imperial insights.</p>
+        </header>
 
-    <section id="dashboard" class="app-section">
-        <div class="glass-panel">
-            <div class="status">● Gemini AI: Online</div>
-            <textarea id="studyInput" placeholder="Paste your material here..."></textarea>
+        <section class="glass-card">
+            <div class="status-bar">● Redha's Engine: Online</div>
+            <textarea id="userInput" placeholder="Paste your study notes here..."></textarea>
             
-            <button id="analyzeBtn" onclick="processAnalysis()" class="main-btn">INITIATE NEURAL SCAN</button>
+            <button id="actionBtn" onclick="runAnalysis()">INITIATE NEURAL SCAN</button>
 
-            <div id="resultBox" class="result-container hidden">
-                <div class="result-header">✦ EXECUTIVE SUMMARY</div>
-                <div id="aiOutput" class="output-text"></div>
+            <div id="resultContainer" class="result-box hidden">
+                <h3>✦ EXECUTIVE SUMMARY</h3>
+                <p id="aiText"></p>
                 <div class="result-footer">
-                    <button onclick="copyText()">Copy Insights</button>
-                    <span>Verified by Redha's Engine</span>
+                    <button class="copy-btn" onclick="copyResult()">Copy Insights</button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
-        <p>© 2026 Developed by <span class="gold-text">Redha Younes Al Sayed Hasan</span></p>
+        Developed with Excellence by <span class="gold">Redha Younes Al Sayed Hasan</span> © 2026
     </footer>
 
     <script src="script.js"></script>
