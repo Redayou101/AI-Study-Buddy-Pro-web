@@ -1,77 +1,108 @@
-// تحديد الوضع الافتراضي
 let currentMode = 'summarize';
+const userInput = document.getElementById('userInput');
+const mainBtn = document.getElementById('mainBtn');
+const btnText = document.getElementById('btnText');
+const loader = document.getElementById('loader');
+const outputContainer = document.getElementById('outputContainer');
+const typewriterOutput = document.getElementById('typewriterOutput');
+const charCountSpan = document.getElementById('currentCount');
+const modeButtons = document.querySelectorAll('.mode-btn');
 
-// دالة لتغيير الأزرار (تعدد الوظائف)
-function setMode(mode) {
-    currentMode = mode;
-    
-    // إزالة التفعيل من كل الأزرار
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
+// تحديث عدد الأحرف
+userInput.addEventListener('input', () => {
+    charCountSpan.textContent = userInput.value.length;
+});
+
+// تفعيل وضع محدد
+modeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        modeButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentMode = button.dataset.mode;
+        // يمكنك تغيير Placeholder هنا بناءً على الوضع
+        userInput.placeholder = `Paste your study material here for ${currentMode}...`;
     });
-    
-    // تفعيل الزر الذي تم الضغط عليه
-    if (mode === 'summarize') document.getElementById('btn-summarize').classList.add('active');
-    if (mode === 'quiz') document.getElementById('btn-quiz').classList.add('active');
-    if (mode === 'simplify') document.getElementById('btn-simplify').classList.add('active');
-}
+});
 
-// دالة التحليل الرئيسية
-function runAnalysis() {
-    const input = document.getElementById('userInput').value;
-    const resultBox = document.getElementById('resultContainer');
-    const aiText = document.getElementById('aiText');
-    const resultTitle = document.getElementById('resultTitle');
-    const btn = document.getElementById('actionBtn');
-
-    // التأكد من أن المستخدم كتب نصاً كافياً
-    if (input.trim().length < 15) {
-        alert("Your Excellency Redha, please enter more study material for a proper analysis.");
+// دالة لمعالجة طلبات الذكاء الاصطناعي (ستتصل بـ Python لاحقاً)
+async function processAI() {
+    const text = userInput.value;
+    if (text.length < 20) {
+        alert("Please provide a more substantial text for neural analysis.");
         return;
     }
 
-    // تأثير التحميل
-    btn.innerText = "REDHA'S NEURAL SCAN IN PROGRESS...";
-    btn.disabled = true;
-    resultBox.classList.add('hidden'); // إخفاء النتيجة القديمة إن وجدت
+    // إظهار حالة التحميل
+    btnText.innerText = "THINKING...";
+    loader.classList.remove('hidden');
+    mainBtn.disabled = true;
+    outputContainer.classList.add('hidden');
+    typewriterOutput.innerHTML = ''; // مسح أي نتائج سابقة
 
-    // محاكاة وقت المعالجة للذكاء الاصطناعي
-    setTimeout(() => {
-        // إعادة الزر لشكله الطبيعي
-        btn.innerText = "INITIATE NEURAL SCAN";
-        btn.disabled = false;
-        
-        // إظهار صندوق النتيجة
-        resultBox.classList.remove('hidden');
-
-        // أخذ أول جزء من النص لجعله يبدو كتحليل حقيقي
-        const firstWords = input.split(' ').slice(0, 8).join(' ');
-        let response = "";
-
-        // تحديد النتيجة بناءً على الزر المختار
+    try {
+        // ****** هذا الجزء سيتم تعديله لاحقاً للاتصال بباك إند Python ******
+        // حالياً: استجابة محاكاة
+        let simulatedResponse = "";
         if (currentMode === 'summarize') {
-            resultTitle.innerText = "✦ EXECUTIVE SUMMARY";
-            response = `Based on your input regarding "${firstWords}...", Redha's Logic Engine has synthesized the following:\n\nThis material outlines a core academic framework. To achieve maximum retention, we recommend focusing on the foundational theories presented. The logical progression of these arguments is key to mastering the subject.`;
-        
+            simulatedResponse = `**Executive Summary by Redha's Engine:**\n\nYour input on "${text.substring(0, 50)}..." has been critically analyzed. The key findings indicate a strong emphasis on [Main Concept 1] and [Main Concept 2], with supporting details in [Supporting Point 1]. This summary is optimized for rapid information retention and deep understanding.\n\n*Keywords: AI, Summary, Redha Younes, Neural Learning, EdTech*`;
         } else if (currentMode === 'quiz') {
-            resultTitle.innerText = "✦ KNOWLEDGE CHECK (QUIZ)";
-            response = `Test your knowledge on the provided material:\n\n1. Based on your text, what is the core significance of "${firstWords}..."?\n2. Identify the primary argument or evidence presented in the text.\n3. How would you apply these specific concepts in a practical, real-world scenario?`;
-        
-        } else if (currentMode === 'simplify') {
-            resultTitle.innerText = "✦ SIMPLIFIED EXPLANATION (ELI5)";
-            response = `Let's break down "${firstWords}..." into simple terms:\n\nThink of this topic as the foundation of a building. Instead of looking at the whole complex skyscraper, just focus on this base layer first. Once you understand these basic building blocks, everything else you read will just be adding floors on top. Keep it simple!`;
+            simulatedResponse = `**Dynamic Quiz Generated by StudyAI:**\n\nPrepare for a rapid knowledge check based on your material:\n\n1. What is the primary objective or main idea presented in the text?\n2. Identify two core concepts and explain their interrelationship.\n3. How can the principles discussed be applied in a practical scenario?\n4. What is one potential challenge or limitation mentioned?\n\n*Challenge your brain! Answer these and strengthen your understanding.*`;
+        } else if (currentMode === 'explain') {
+            simulatedResponse = `**Concept Simplified by Redha's Neural Network:**\n\nImagine "${text.substring(0, 50)}..." as a simple analogy:\n\nIf you're learning about how a car works, you don't need to know every tiny gear at first. You start with: "A car needs fuel to move, an engine to convert fuel to power, and wheels to go." StudyAI breaks down your complex text into these simple, digestible analogies. It's like having a brilliant friend explain it to you in the easiest way possible!`;
         }
-
-        // وضع النص في الصندوق والنزول إليه
-        aiText.innerText = response;
-        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         
-    }, 1500); // تأخير ثانية ونصف لمحاكاة التفكير
+        // محاكاة تأخير الشبكة ثم عرض النتيجة بتأثير الكتابة
+        await new Promise(resolve => setTimeout(resolve, 2000)); // تأخير 2 ثانية
+        outputContainer.classList.remove('hidden');
+        typeWriterEffect(simulatedResponse, typewriterOutput);
+
+    } catch (error) {
+        console.error("Error connecting to AI backend:", error);
+        typewriterOutput.innerText = "Error: Could not connect to the neural engine. Please try again later, Redha is debugging this now!";
+        outputContainer.classList.remove('hidden');
+    } finally {
+        btnText.innerText = "INITIATE NEURAL SCAN";
+        loader.classList.add('hidden');
+        mainBtn.disabled = false;
+    }
 }
 
-// دالة نسخ النص
-function copyResult() {
-    const text = document.getElementById('aiText').innerText;
-    navigator.clipboard.writeText(text);
-    alert("Insights successfully copied to clipboard! Verified by Redha Younes.");
+// تأثير الكتابة (Typewriter Effect)
+function typeWriterEffect(text, element, speed = 15) {
+    let i = 0;
+    const interval = setInterval(() => {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(interval);
+        }
+    }, speed);
 }
+
+// نسخ النتيجة للملاحظة
+function copyToClipboard() {
+    const textToCopy = typewriterOutput.innerText;
+    navigator.clipboard.writeText(textToCopy)
+        .then(() => alert("Neural output copied to clipboard!"))
+        .catch(err => console.error('Failed to copy: ', err));
+}
+
+// تحميل النتيجة كملف PDF
+function downloadPDF() {
+    const element = document.getElementById('typewriterOutput');
+    const opt = {
+        margin:       1,
+        filename:     'StudyAI_Neural_Output.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(opt).save();
+}
+
+// التهيئة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+    userInput.value = ''; // مسح المحتوى القديم
+    charCountSpan.textContent = '0'; // إعادة تعيين عداد الأحرف
+});
