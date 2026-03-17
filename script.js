@@ -2,13 +2,10 @@ let currentMode = 'summarize';
 
 function setMode(mode) {
     currentMode = mode;
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    // تفعيل الزر المختار
-    if (mode === 'summarize') document.getElementById('btn-summarize').classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    if (mode === 'summarize') document.getElementById('btn-sum').classList.add('active');
     if (mode === 'quiz') document.getElementById('btn-quiz').classList.add('active');
-    if (mode === 'simplify') document.getElementById('btn-simplify').classList.add('active');
+    if (mode === 'simplify') document.getElementById('btn-simp').classList.add('active');
 }
 
 function runAnalysis() {
@@ -19,11 +16,11 @@ function runAnalysis() {
     const btn = document.getElementById('actionBtn');
 
     if (input.trim().length < 10) {
-        alert("Your Excellency Redha, please enter more content for analysis.");
+        alert("Your Excellency Redha, please provide content to analyze.");
         return;
     }
 
-    btn.innerText = "REDHA'S NEURAL SCAN IN PROGRESS...";
+    btn.innerText = "REDHA'S NEURAL SCANNING...";
     btn.disabled = true;
 
     setTimeout(() => {
@@ -31,18 +28,18 @@ function runAnalysis() {
         btn.disabled = false;
         resultBox.classList.remove('hidden');
 
-        const firstSent = input.split('.')[0].substring(0, 60);
+        const preview = input.split('.')[0].substring(0, 50);
         let response = "";
 
         if (currentMode === 'summarize') {
             resultTitle.innerText = "✦ EXECUTIVE SUMMARY";
-            response = `Analysis of "${firstSent}...": \n\nThis material is synthesized as a core academic framework. Redha's logic engine suggests focusing on the foundational theories presented to ensure complete mastery.`;
+            response = `Analysis of "${preview}...": This material outlines a sophisticated framework. We recommend focusing on the logical progression of the arguments to ensure complete mastery.`;
         } else if (currentMode === 'quiz') {
             resultTitle.innerText = "✦ KNOWLEDGE CHECK";
-            response = `1. Based on your input, what defines the core of "${firstSent}"?\n2. Identify the main argument presented in the text.\n3. How would you explain these concepts to a peer?`;
+            response = `1. Based on your text, what defines "${preview}"?\n2. Identify the primary objective mentioned.\n3. How would you apply these insights in a practical setting?`;
         } else if (currentMode === 'simplify') {
             resultTitle.innerText = "✦ SIMPLIFIED EXPLANATION";
-            response = `Think of "${firstSent}" as the start of a journey. You don't need to know every detail yet, just understand the basic path. Everything else is just extra gear for your trip!`;
+            response = `Think of "${preview}" as the foundation of a structure. Instead of looking at the whole complex building, just focus on this base layer first. Everything else builds on top of it!`;
         }
 
         aiText.innerText = response;
@@ -53,5 +50,5 @@ function runAnalysis() {
 function copyResult() {
     const text = document.getElementById('aiText').innerText;
     navigator.clipboard.writeText(text);
-    alert("Insights copied! Verified by Redha Younes.");
+    alert("Insights copied! Designed by Redha Younes.");
 }
