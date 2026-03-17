@@ -3,51 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyAI | Redha Younes Edition Pro</title>
+    <title>StudyAI | Neural Assistant Pro - Powered by Redha</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="stars"></div>
+    <div class="background-animation"></div>
     
     <nav class="navbar">
         <div class="logo">STUDY<span>AI</span></div>
-        <div class="dev-credit">Lead Developer: Redha Younes Al Sayed Hasan</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <span class="dev-tag">ENGINEERED BY REDHA</span>
+        </div>
     </nav>
 
     <main class="container">
         <header class="hero">
-            <h1>Elite <span class="gold">Neural</span> Assistant</h1>
-            <p>Empowering academic excellence through Redha's logic engine.</p>
+            <h1 class="glow-text">Neural <span class="gold">Study</span> Engine</h1>
+            <p class="subtitle">Your Personal AI for Academic Dominance</p>
         </header>
 
-        <section class="glass-card">
-            <div class="status-bar">● System Status: <span class="gold">Operational</span></div>
-            
-            <div class="function-tabs">
-                <button class="tab-btn active" id="btn-summarize" onclick="setMode('summarize')">Summarize</button>
-                <button class="tab-btn" id="btn-quiz" onclick="setMode('quiz')">Generate Quiz</button>
-                <button class="tab-btn" id="btn-simplify" onclick="setMode('simplify')">Simplify (ELI5)</button>
+        <div class="glass-card">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="summarize"><i class="fas fa-file-alt"></i> Summarize</button>
+                <button class="mode-btn" data-mode="quiz"><i class="fas fa-question-circle"></i> Generate Quiz</button>
+                <button class="mode-btn" data-mode="explain"><i class="fas fa-lightbulb"></i> Simplify Concept</button>
             </div>
 
-            <textarea id="userInput" placeholder="Paste your study material here for analysis..."></textarea>
-            
-            <button id="actionBtn" onclick="runAnalysis()">INITIATE NEURAL SCAN</button>
+            <div class="input-area">
+                <textarea id="userInput" placeholder="Paste your study material here..."></textarea>
+                <div class="char-count">Character count: <span id="currentCount">0</span></div>
+            </div>
 
-            <div id="resultContainer" class="result-box hidden">
-                <div class="result-header">
-                    <h3 id="resultTitle">✦ EXECUTIVE SUMMARY</h3>
+            <button id="mainBtn" onclick="processAI()">
+                <span id="btnText">INITIATE NEURAL SCAN</span>
+                <div id="loader" class="loader hidden"></div>
+            </button>
+
+            <div id="outputContainer" class="output-box hidden">
+                <div class="output-header">
+                    <span>✦ NEURAL OUTPUT</span>
+                    <div class="actions">
+                        <button onclick="copyToClipboard()" class="icon-btn">📋 Copy</button>
+                        <button onclick="downloadPDF()" class="icon-btn gold-bg">📄 Export PDF</button>
+                    </div>
                 </div>
-                <p id="aiText"></p>
-                <div class="result-footer">
-                    <button class="copy-btn" onclick="copyResult()">Copy Insights</button>
+                <div id="typewriterOutput" class="content-text"></div>
+            </div>
+        </div>
+
+        <section id="features" class="section-block">
+            <h2><span class="gold">Key</span> Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>Intelligent Summarization</h3>
+                    <p>Condense lengthy texts into concise, easy-to-understand summaries. Ideal for quick revisions.</p>
                 </div>
+                <div class="feature-item">
+                    <i class="fas fa-spell-check"></i>
+                    <h3>Dynamic Quiz Generation</h3>
+                    <p>Create personalized quizzes from your notes to test retention and identify knowledge gaps.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Concept Simplification</h3>
+                    <p>Break down complex topics into simpler terms, making difficult subjects accessible to everyone.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-block">
+            <h2><span class="gold">About</span> StudyAI</h2>
+            <p>StudyAI is a passion project developed by <span class="gold-bright">Redha Younes</span>, a dedicated student and aspiring software engineer. Our mission is to leverage the power of artificial intelligence to revolutionize the learning experience, making education more efficient, accessible, and engaging for students worldwide.</p>
+            <p>This platform is a testament to the potential of combining cutting-edge technology with academic needs, crafted with precision and a vision for the future of EdTech.</p>
+        </section>
+
+        <section id="contact" class="section-block">
+            <h2><span class="gold">Connect</span> with Redha</h2>
+            <p>Have questions or want to collaborate? Feel free to reach out!</p>
+            <div class="contact-links">
+                <a href="https://github.com/Redayou101" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="mailto:your_email@example.com"><i class="fas fa-envelope"></i> Email</a>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        Developed with Excellence by <span class="gold">Redha Younes Al Sayed Hasan</span> © 2026
+    <footer>
+        <p>&copy; 2026 StudyAI by Redha Younes. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
