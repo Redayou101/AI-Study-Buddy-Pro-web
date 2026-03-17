@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Buddy | واجهة الويب</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">🎓</div>
+            <h1>AI Study Buddy <span class="badge">Pro</span></h1>
+            <p>حول دروسك الطويلة إلى ملخصات ذكية في ثوانٍ</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="userInput">الصق نص الدرس أو المقال هنا:</label>
+                <textarea id="userInput" placeholder="مثلاً: الخلية هي وحدة بناء الكائن الحي..."></textarea>
+                <button id="analyzeBtn" onclick="processStudyText()">تحليل النص بالذكاء الاصطناعي 🚀</button>
+            </div>
+
+            <div id="loader" class="hidden">جاري معالجة البيانات... ⏳</div>
+
+            <div id="resultSection" class="result-card hidden">
+                <h3>📊 التقرير الذكي:</h3>
+                <div id="summaryOutput"></div>
+                <hr>
+                <div class="stats">
+                    <span id="wordCount"></span> | <span id="timeSaved"></span>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>تم التطوير بكل حب للمشاركة في مسابقات الطلاب العالمية ✨</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
