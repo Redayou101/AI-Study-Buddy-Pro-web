@@ -5,65 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Study Buddy Pro | Royal Edition</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">STUDY<span>BUDDY</span></div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#app" class="gold-btn">Launch App</a>
-        </div>
-    </nav>
-
-    <section id="home" class="hero-section">
-        <div class="hero-content">
-            <h1>Elevate Your Learning with <span class="gold-text">Imperial AI</span></h1>
-            <p>The gold standard in academic text summarization.</p>
-            <a href="#app" class="hero-btn">Get Started</a>
-        </div>
-    </section>
-
-    <section id="about" class="info-section">
-        <div class="glass-card">
-            <h2>Why Pro Edition?</h2>
-            <div class="grid-info">
-                <div class="info-item">
-                    <h3 class="gold-text">Efficiency</h3>
-                    <p>Turn hours of reading into minutes of key insights.</p>
-                </div>
-                <div class="info-item">
-                    <h3 class="gold-text">Precision</h3>
-                    <p>Advanced algorithms pinpoint crucial academic concepts.</p>
-                </div>
+    <div class="luxury-wrapper">
+        <nav class="top-nav">
+            <div class="logo">STUDY<span>BUDDY</span></div>
+            <div class="nav-links">
+                <a href="#about">What is it?</a>
+                <a href="#app" class="gold-link">Neural Engine</a>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <section id="app" class="main-app">
-        <div class="app-container">
-            <h2>Neural Processor</h2>
-            <p class="subtitle">Paste your material below for instant analysis</p>
-            <textarea id="userInput" placeholder="Enter your text here..."></textarea>
-            <button class="analyze-btn" onclick="royalProcess()">Process with AI ⟡</button>
+        <section id="hero" class="royal-hero">
+            <h1>Mastery Through <span class="gold-text">AI Intelligence</span></h1>
+            <p>The elite choice for academic excellence.</p>
+        </section>
 
-            <div id="loader" class="hidden">
-                <div class="gold-spinner"></div>
-                <p>Consulting AI Engine...</p>
-            </div>
+        <section id="app" class="neural-engine">
+            <div class="glass-panel">
+                <h2>Royal Processor</h2>
+                <p class="panel-subtitle">Paste your material for instant refined summary</p>
+                <textarea id="userInput" placeholder="Paste your academic text here..."></textarea>
+                <button class="royal-btn" onclick="royalProcess()">Process with AI ⟡</button>
 
-            <div id="resultBox" class="result-glass hidden">
-                <div class="result-header">Executive Summary</div>
-                <div id="outputContent"></div>
-                <div class="stats-row">
-                    <div id="wCount"></div>
-                    <div id="tSaved"></div>
+                <div id="loader" class="hidden">
+                    <div class="spinner-gold"></div>
+                    <p>Consulting Neural Network...</p>
+                </div>
+
+                <div id="resultContainer" class="hidden">
+                    <div class="gold-divider"></div>
+                    <h3>Executive Summary</h3>
+                    <div id="summaryText"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <script src="script.js"></script>
 </body>
