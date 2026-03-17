@@ -4,77 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyAI | Redha Younes Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="stars-overlay"></div>
 
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">STUDY<span>AI</span></div>
-            <div class="nav-links">
-                <a href="#hero">Home</a>
-                <a href="#dashboard" class="launch-btn">Neural Dashboard</a>
-            </div>
+        <div class="logo">STUDY<span>AI</span></div>
+        <div class="nav-links">
+            <span class="dev-name">By: Redha Younes</span>
+            <a href="#dashboard" class="launch-btn">Launch Engine</a>
         </div>
     </nav>
 
-    <header id="hero" class="hero">
-        <div class="hero-content">
-            <div class="ai-badge">Developed by Redha Younes</div>
-            <h1>Refine Knowledge into <span class="gold-gradient">Pure Gold</span></h1>
-            <p>I am your Elite AI partner. Together, we will distill hours of complex study material into precise, imperial insights in seconds.</p>
-            <div class="hero-btns">
-                <button onclick="scrollToApp()" class="main-gold-btn">Start Neural Scan</button>
-            </div>
-        </div>
+    <header class="hero">
+        <div class="ai-badge">Lead Developer: Redha Younes Al Sayed Hasan</div>
+        <h1>Imperial <span class="gold-text">Knowledge</span> Synthesis</h1>
+        <p>Transforming complex academic material into pure gold insights.</p>
     </header>
 
     <section id="dashboard" class="app-section">
         <div class="glass-panel">
-            <div class="panel-header">
-                <div class="status-indicator">
-                    <span class="pulse"></span>
-                    Gemini AI: <span class="online">Ready for Redha</span>
-                </div>
-                <h2>Elite Neural Dashboard</h2>
-            </div>
+            <div class="status">● Gemini AI: Online</div>
+            <textarea id="studyInput" placeholder="Paste your material here..."></textarea>
+            
+            <button id="analyzeBtn" onclick="processAnalysis()" class="main-btn">INITIATE NEURAL SCAN</button>
 
-            <div class="input-container">
-                <textarea id="studyInput" placeholder="Paste your study notes here for elite analysis..."></textarea>
-                <div class="char-count">Word Count: <span id="wCount">0</span></div>
-            </div>
-
-            <button id="analyzeBtn" onclick="startNeuralAnalysis()" class="analyze-btn">
-                Initiate Analysis
-            </button>
-
-            <div id="processing" class="processing-wrap hidden">
-                <div class="ai-loader"></div>
-                <p>Synthesizing Data...</p>
-            </div>
-
-            <div id="resultArea" class="result-card hidden">
-                <div class="result-nav">
-                    <span class="gold-text">✦ Executive Summary</span>
-                    <button class="copy-btn" onclick="copyToClipboard()">Copy Result</button>
-                </div>
-                <div id="aiSummary" class="typing-container"></div>
-                <div class="stats-row">
-                    <div class="stat-box">Efficiency: <span class="gold-text">Elite</span></div>
-                    <div class="stat-box">Analysis by: <span class="gold-text">Redha's Engine</span></div>
+            <div id="resultBox" class="result-container hidden">
+                <div class="result-header">✦ EXECUTIVE SUMMARY</div>
+                <div id="aiOutput" class="output-text"></div>
+                <div class="result-footer">
+                    <button onclick="copyText()">Copy Insights</button>
+                    <span>Verified by Redha's Engine</span>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <div class="footer-content">
-            <p>© 2026 StudyAI Pro | All Rights Reserved</p>
-            <p class="dev-tag">Lead Developer: <span class="gold-name">Redha Younes Al Sayed Hasan</span></p>
-        </div>
+        <p>© 2026 Developed by <span class="gold-text">Redha Younes Al Sayed Hasan</span></p>
     </footer>
 
     <script src="script.js"></script>
