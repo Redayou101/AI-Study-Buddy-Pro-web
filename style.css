@@ -1,58 +1,53 @@
-/* الأكواد السابقة كما هي، وأضف عليها التالي: */
-
-.function-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    justify-content: center;
+:root {
+    --navy: #020617;
+    --gold: #c5a059;
+    --gold-bright: #f1d27b;
+    --glass: rgba(10, 25, 47, 0.85);
 }
+
+body {
+    margin: 0; background: var(--navy); color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.stars {
+    position: fixed; width: 100%; height: 100%; z-index: -1;
+    background: radial-gradient(circle, #0f172a 0%, #020617 100%);
+}
+
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5%; border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.logo span { color: var(--gold); }
+.dev-credit { color: var(--gold); font-size: 12px; }
+
+.container { padding: 50px 5%; max-width: 800px; margin: 0 auto; text-align: center; }
+
+.function-tabs { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
 
 .tab-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(197, 160, 89, 0.3);
-    color: var(--gold);
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    transition: 0.3s;
+    background: transparent; border: 1px solid var(--gold); color: var(--gold);
+    padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s;
 }
 
-.tab-btn.active {
-    background: var(--gold);
-    color: var(--navy);
-    font-weight: bold;
+.tab-btn.active { background: var(--gold); color: var(--navy); }
+
+textarea {
+    width: 100%; height: 180px; background: #010409; border: 1px solid #1e293b;
+    border-radius: 10px; color: white; padding: 15px; font-size: 16px; outline: none;
 }
 
-.result-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+#actionBtn {
+    width: 100%; padding: 15px; background: var(--gold); border: none;
+    border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;
 }
 
-.badge {
-    background: var(--gold);
-    color: var(--navy);
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 3px;
-    font-weight: bold;
+.result-box {
+    margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.03);
+    border-left: 4px solid var(--gold); text-align: left;
 }
 
-.result-footer {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.download-btn {
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-}
+.hidden { display: none; }
+.footer { padding: 30px; text-align: center; opacity: 0.6; font-size: 12px; }
