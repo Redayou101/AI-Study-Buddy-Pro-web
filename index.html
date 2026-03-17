@@ -1,18 +1,86 @@
-<section id="about" class="info-section">
-    <div class="about-container">
-        <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=1000" alt="AI Learning">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Buddy Elite Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">STUDY<span>AI</span></div>
+        <div class="nav-links">
+            <a href="#hero" class="nav-item">Home</a>
+            <a href="#features" class="nav-item">Features</a>
+            <a href="#dashboard" class="nav-item nav-button">Launch Dashboard</a>
         </div>
-        <div class="about-text glass-card">
-            <h2 class="gold-text">Why Pro Edition?</h2>
-            <div class="info-item">
-                <h3 class="gold-text">⚡ Imperial Efficiency</h3>
-                <p>Designed for elite students who value their time. Our engine distills hours of complex reading into core insights instantly.</p>
+    </nav>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h1>Unlock Academic Excellence with <span class="gold-text">AI Power</span></h1>
+            <p class="tagline">Your personal neural assistant for smarter, faster learning.</p>
+            <a href="#dashboard" class="main-cta-btn">Start Your Elite Study</a>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="features-grid-container">
+            <div class="feature-card">
+                <span class="icon">✨</span>
+                <h3>Instant Summaries</h3>
+                <p>Transform lengthy texts into concise, easy-to-digest summaries in seconds.</p>
             </div>
-            <div class="info-item">
-                <h3 class="gold-text">🎯 Neural Precision</h3>
-                <p>Beyond simple summaries; we use advanced linguistic patterns to pinpoint crucial academic concepts with 99% relevance.</p>
+            <div class="feature-card">
+                <span class="icon">🧠</span>
+                <h3>Deep Analysis</h3>
+                <p>Utilizes advanced AI to extract core concepts and key takeaways from any material.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">⏰</span>
+                <h3>Time Optimization</h3>
+                <p>Significantly reduce study time by focusing only on what truly matters.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🔒</span>
+                <h3>Secure & Private</h3>
+                <p>Your data is processed securely, ensuring complete privacy and confidentiality.</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section id="dashboard" class="dashboard-section">
+        <div class="dashboard-panel">
+            <h2 class="dashboard-title">Elite Neural Dashboard</h2>
+            <p class="dashboard-subtitle">Paste your academic content below to initiate AI analysis.</p>
+            
+            <textarea id="userInput" placeholder="Paste your articles, notes, or research papers here..."></textarea>
+            
+            <button class="process-btn" onclick="initiateEliteAnalysis()">Analyze Content <span class="btn-icon">▶</span></button>
+
+            <div id="loader" class="loader-container hidden">
+                <div class="loader-spinner"></div>
+                <p class="loader-text">AI is deep-scanning your content...</p>
+            </div>
+
+            <div id="resultContainer" class="result-panel hidden">
+                <h3 class="result-title">⚡ Executive Summary</h3>
+                <p id="summaryOutput" class="summary-text"></p>
+                <div class="result-metrics">
+                    <span id="wordCountMetric"></span>
+                    <span id="timeSavedMetric"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 AI Study Buddy Elite. All rights reserved.</p>
+        <p>Developed for global academic innovation.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
