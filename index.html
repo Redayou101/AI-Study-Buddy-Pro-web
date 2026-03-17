@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyAI | Redha Younes Edition</title>
+    <title>StudyAI | Redha Younes Edition Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,26 +12,37 @@
     
     <nav class="navbar">
         <div class="logo">STUDY<span>AI</span></div>
-        <div class="dev-credit">By: Redha Younes Al Sayed Hasan</div>
+        <div class="dev-credit">Lead Developer: Redha Younes Al Sayed Hasan</div>
     </nav>
 
     <main class="container">
         <header class="hero">
             <h1>Elite <span class="gold">Neural</span> Assistant</h1>
-            <p>Distilling complex knowledge into imperial insights.</p>
+            <p>Empowering knowledge through Redha's advanced neural architecture.</p>
         </header>
 
         <section class="glass-card">
-            <div class="status-bar">● Redha's Engine: Online</div>
-            <textarea id="userInput" placeholder="Paste your study notes here..."></textarea>
+            <div class="status-bar">● System Status: <span class="gold">Operational</span></div>
+            
+            <div class="function-tabs">
+                <button class="tab-btn active" onclick="setMode('summarize')">Summarize</button>
+                <button class="tab-btn" onclick="setMode('quiz')">Generate Quiz</button>
+                <button class="tab-btn" onclick="setMode('simplify')">Simplify (ELI5)</button>
+            </div>
+
+            <textarea id="userInput" placeholder="Paste your study material here..."></textarea>
             
             <button id="actionBtn" onclick="runAnalysis()">INITIATE NEURAL SCAN</button>
 
             <div id="resultContainer" class="result-box hidden">
-                <h3>✦ EXECUTIVE SUMMARY</h3>
+                <div class="result-header">
+                    <h3 id="resultTitle">✦ EXECUTIVE SUMMARY</h3>
+                    <span class="badge" id="modeBadge">Redha's Engine</span>
+                </div>
                 <p id="aiText"></p>
                 <div class="result-footer">
                     <button class="copy-btn" onclick="copyResult()">Copy Insights</button>
+                    <button class="download-btn" onclick="alert('PDF Feature coming soon to Redha Edition!')">Save as PDF</button>
                 </div>
             </div>
         </section>
