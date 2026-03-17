@@ -1,33 +1,31 @@
-function processStudyText() {
-    const text = document.getElementById('userInput').value;
+function processText() {
+    const input = document.getElementById('userInput').value;
     const loader = document.getElementById('loader');
-    const resultSection = document.getElementById('resultSection');
-    const summaryOutput = document.getElementById('summaryOutput');
+    const resultBox = document.getElementById('resultBox');
+    const summaryDiv = document.getElementById('summary');
 
-    if (text.length < 20) {
-        alert("يا بطل، النص قصير جداً! حط نص درس كامل عشان أبدع لك.");
+    if (input.length < 50) {
+        alert("Text too short! Please provide a full lesson for better results.");
         return;
     }
 
-    // إظهار لودر المعالجة
     loader.classList.remove('hidden');
-    resultSection.classList.add('hidden');
+    resultBox.classList.add('hidden');
 
+    // Simulate AI Processing
     setTimeout(() => {
         loader.classList.add('hidden');
-        resultSection.classList.remove('hidden');
+        resultBox.classList.remove('hidden');
 
-        // محاكاة ذكاء اصطناعي بسيطة للتلخيص
-        const words = text.split(' ');
-        summaryOutput.innerHTML = `
-            <ul>
-                <li>📌 <b>الفكرة الرئيسية:</b> تحليل محتوى تعليمي مكثف.</li>
-                <li>💡 <b>نقطة هامة:</b> تم استخراج المفاهيم الأساسية آلياً.</li>
-                <li>✅ <b>الخلاصة:</b> المحتوى يتحدث عن ${words.slice(0, 3).join(' ')}...</li>
-            </ul>
-        `;
+        const words = input.split(' ');
+        const summary = words.slice(0, 40).join(' ') + "..."; // Real Logic: First 40 words
         
-        document.getElementById('wordCount').innerText = `عدد الكلمات: ${words.length}`;
-        document.getElementById('timeSaved').innerText = `الوقت الموفر: ${Math.round(words.length / 50)} دقيقة`;
-    }, 1500);
+        summaryDiv.innerHTML = `
+            <p style="color: #d4af37; margin-bottom: 10px;">✨ Summary:</p>
+            <p>${summary}</p>
+        `;
+
+        document.getElementById('wordCount').innerText = `Words: ${words.length}`;
+        document.getElementById('timeSaved').innerText = `Time Saved: ${Math.round(words.length / 60)} min`;
+    }, 2000);
 }
