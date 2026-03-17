@@ -1,13 +1,14 @@
-// تحديد النمط الافتراضي
 let currentMode = 'summarize';
 
-// وظيفة التبديل بين الأنماط (تعدد المهام)
 function setMode(mode) {
     currentMode = mode;
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
-        if(btn.innerText.toLowerCase().includes(mode)) btn.classList.add('active');
     });
+    // تفعيل الزر المختار
+    if (mode === 'summarize') document.getElementById('btn-summarize').classList.add('active');
+    if (mode === 'quiz') document.getElementById('btn-quiz').classList.add('active');
+    if (mode === 'simplify') document.getElementById('btn-simplify').classList.add('active');
 }
 
 function runAnalysis() {
@@ -17,14 +18,12 @@ function runAnalysis() {
     const resultTitle = document.getElementById('resultTitle');
     const btn = document.getElementById('actionBtn');
 
-    // التحقق من النص
     if (input.trim().length < 10) {
-        alert("Your Excellency Redha, please enter some text for analysis.");
+        alert("Your Excellency Redha, please enter more content for analysis.");
         return;
     }
 
-    // تأثير التحميل الفخم
-    btn.innerText = "CONSULTING REDHA'S ENGINE...";
+    btn.innerText = "REDHA'S NEURAL SCAN IN PROGRESS...";
     btn.disabled = true;
 
     setTimeout(() => {
@@ -32,29 +31,27 @@ function runAnalysis() {
         btn.disabled = false;
         resultBox.classList.remove('hidden');
 
-        // منطق التحليل الذكي (بدون API)
-        const firstLine = input.split('\n')[0].substring(0, 50);
+        const firstSent = input.split('.')[0].substring(0, 60);
         let response = "";
 
         if (currentMode === 'summarize') {
             resultTitle.innerText = "✦ EXECUTIVE SUMMARY";
-            response = `Analysis of "${firstLine}...": \n\nThis material covers essential academic foundations. Redha's Engine recommends focusing on the structural relationships within the text to achieve 95% retention.`;
+            response = `Analysis of "${firstSent}...": \n\nThis material is synthesized as a core academic framework. Redha's logic engine suggests focusing on the foundational theories presented to ensure complete mastery.`;
         } else if (currentMode === 'quiz') {
-            resultTitle.innerText = "✦ SMART QUIZ";
-            response = `1. What is the primary objective of "${firstLine}"?\n2. Identify three key supporting details from the provided text.\n3. How does this concept integrate with your existing knowledge?`;
+            resultTitle.innerText = "✦ KNOWLEDGE CHECK";
+            response = `1. Based on your input, what defines the core of "${firstSent}"?\n2. Identify the main argument presented in the text.\n3. How would you explain these concepts to a peer?`;
         } else if (currentMode === 'simplify') {
-            resultTitle.innerText = "✦ SIMPLIFIED (ELI5)";
-            response = `Think of this like building a Lego tower. You've provided the base blocks "${firstLine}". To make it stand, you just need to connect the pieces we identified in your text!`;
+            resultTitle.innerText = "✦ SIMPLIFIED EXPLANATION";
+            response = `Think of "${firstSent}" as the start of a journey. You don't need to know every detail yet, just understand the basic path. Everything else is just extra gear for your trip!`;
         }
 
-        // إظهار النتيجة بتأثير سلس
         aiText.innerText = response;
         resultBox.scrollIntoView({ behavior: 'smooth' });
-    }, 1000);
+    }, 1200);
 }
 
 function copyResult() {
     const text = document.getElementById('aiText').innerText;
     navigator.clipboard.writeText(text);
-    alert("Royal insights copied to clipboard!");
+    alert("Insights copied! Verified by Redha Younes.");
 }
