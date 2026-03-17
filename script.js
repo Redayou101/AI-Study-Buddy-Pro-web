@@ -1,53 +1,72 @@
-function processAI() {
-    const input = document.getElementById('userInput').value;
-    const btn = document.getElementById('mainBtn');
-    const responseArea = document.getElementById('aiResponse');
-    const output = document.getElementById('typewriter');
+function startNeuralAnalysis() {
+    const input = document.getElementById('studyInput').value;
+    const btn = document.getElementById('analyzeBtn');
+    const processing = document.getElementById('processing');
+    const resultArea = document.getElementById('resultArea');
+    const output = document.getElementById('aiSummary');
 
-    // التحقق من طول النص
-    if (input.trim().length < 100) {
-        alert("Wait! To provide a royal analysis, I need at least 100 characters. Quality requires content!");
+    if (input.trim().length < 50) {
+        alert("Your Excellency, the content is too brief. Please provide a more substantial text for a royal analysis.");
         return;
     }
 
-    // تأثير الانتظار
-    btn.innerText = "Consulting Neural Pathways...";
     btn.disabled = true;
+    btn.innerHTML = "Accessing Neural Pathways...";
+    processing.classList.remove('hidden');
+    resultArea.classList.add('hidden');
 
     setTimeout(() => {
-        responseArea.classList.remove('hidden');
-        btn.innerText = "Initiate Neural Analysis";
+        processing.classList.add('hidden');
+        resultArea.classList.remove('hidden');
         btn.disabled = false;
+        btn.innerHTML = "Initiate Neural Scan";
 
-        // منطق "تلخيص" وهمي ذكي
-        const sentences = input.split(/[.!?]/).filter(s => s.length > 20);
-        const resultText = `Analysis Complete. Based on your input, the core pillars of this material revolve around ${sentences[0].toLowerCase()}. In summary, we can determine that the primary objective is to clarify the relationship between the key concepts provided. As your AI companion, I recommend focusing on the foundational segments of this text for better mastery.`;
-
-        // تأثير الكتابة
-        typeWriter(output, resultText, 0);
-        document.getElementById('knowledgeLevel').innerText = "98.4%";
+        const sentences = input.split(/[.!?]/).filter(s => s.trim().length > 10);
+        const summary = generateSummary(sentences);
         
-        // التمرير للنتيجة
-        responseArea.scrollIntoView({ behavior: 'smooth' });
-    }, 2000);
+        const wordCount = input.split(' ').length;
+        document.getElementById('savedTime').innerText = Math.round(wordCount / 65);
+
+        typeWriter(output, summary);
+        
+    }, 2800);
 }
 
-function typeWriter(element, text, i) {
-    if (i === 0) element.innerHTML = "";
-    if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        setTimeout(() => typeWriter(element, text, i + 1), 25);
-    }
+function generateSummary(sentences) {
+    const keyWords = ["important", "result", "lead", "because", "main", "core", "finally", "however"];
+    let filtered = sentences.filter(s => keyWords.some(k => s.toLowerCase().includes(k)));
+    
+    if (filtered.length < 2) filtered = sentences.slice(0, 3);
+    
+    return "After a deep neural scan of your material, here is the executive summary:\n\n✦ " + 
+           filtered.map(s => s.trim()).join(".\n\n✦ ") + ".";
 }
 
-// عداد الكلمات
-document.getElementById('userInput').addEventListener('input', function() {
+function typeWriter(element, text) {
+    element.innerHTML = "";
+    let i = 0;
+    const speed = 25;
+    const interval = setInterval(() => {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(interval);
+        }
+    }, speed);
+}
+
+document.getElementById('studyInput').addEventListener('input', function() {
     const count = this.value.trim().split(/\s+/).filter(w => w.length > 0).length;
-    document.getElementById('wordCounter').innerText = `${count} words`;
+    document.getElementById('wCount').innerText = count;
 });
 
-function copyResult() {
-    const text = document.getElementById('typewriter').innerText;
+function copyToClipboard() {
+    const text = document.getElementById('aiSummary').innerText;
     navigator.clipboard.writeText(text);
-    alert("Copied to Royal Clipboard!");
+    alert("Royal insights copied to clipboard!");
+}
+
+function scrollToApp() {
+    document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
 }
