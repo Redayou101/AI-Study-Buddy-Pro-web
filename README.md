@@ -1,26 +1,37 @@
-# 🌐 AI Study Buddy - Web Interface
+<div align="center">
+  <h1 style="color: #c5a059;">🧠 StudyAI | Neural Engine</h1>
+  <p><i>Advanced Academic Synthesis, Engineered by Redha Younes.</i></p>
 
-![Status](https://img.shields.io/badge/Status-Live-success)
-![Platform](https://img.shields.io/badge/Platform-GitHub_Pages-blue)
-![Language](https://img.shields.io/badge/Language-HTML%2FCSS%2FJS-orange)
+  <img src="https://img.shields.io/badge/Version-2.0_PRO-020617?style=flat-square&logo=quicktime&logoColor=c5a059&labelColor=0f172a" />
+  <img src="https://img.shields.io/badge/Status-Active_Development-020617?style=flat-square&logo=git&logoColor=c5a059&labelColor=0f172a" />
+  <img src="https://img.shields.io/badge/UI-Glassmorphism-020617?style=flat-square&logo=css3&logoColor=c5a059&labelColor=0f172a" />
+</div>
 
-Welcome to the **AI Study Buddy** web interface! This project serves as a modern, interactive Front-end designed to help students interact with intelligent text summarization tools effortlessly.
+<br>
+
+## ✦ System Overview
+**StudyAI** is a premium web-based application designed to help students master their academic material. Using a custom local-heuristic logic engine, it processes large texts and breaks them down into digestible formats without relying on external servers.
 
 ## ✨ Key Features
-* **Modern UI:** Clean and user-friendly interface built with modern CSS.
-* **Real-time Interaction:** Uses JavaScript to process text and display reports instantly.
-* **Smart Time-Saver:** Includes a logic-based feature to calculate estimated study time saved.
-* **Fully Responsive:** Optimized for all devices, including desktops, tablets, and smartphones.
+* 📝 **Intelligent Summarization:** Extracts core concepts from complex paragraphs instantly.
+* 🎯 **Dynamic Quizzes:** Generates quick knowledge checks based on the provided text.
+* 💡 **Concept Simplification:** Explains difficult topics using the ELI5 (Explain Like I'm 5) methodology.
+* 📄 **PDF Export:** Allows students to download their AI-generated notes instantly.
 
-## 🛠️ Tech Stack
-* **HTML5:** Structural backbone of the web application.
-* **CSS3:** For styling, layouts, and smooth visual effects.
-* **JavaScript:** Powering the logic and interactive user experience.
+## 🛠️ Architecture & Stack
+Designed with a strict **Navy & Gold** aesthetic to provide a distraction-free, premium studying environment.
+- **Frontend:** HTML5, CSS3 (Advanced Glassmorphism & Animations)
+- **Logic Engine:** Vanilla JavaScript (Local Heuristic Algorithms)
+- **Export Utility:** html2pdf.js
 
-## 🚀 Live Demo
-Experience the tool live here:
-👉 [**Open AI Study Buddy Web**](https://YOUR-USERNAME.github.io/AI-Study-Buddy-Pro-web/)
-*(Note: Please replace "YOUR-USERNAME" with your actual GitHub username)*
+## 🚀 How to Initialize
+1. Clone the repository to your local machine.
+2. Open `index.html` in any modern web browser.
+3. Paste your study material into the terminal area.
+4. Select your mode and click **"Initiate Neural Scan"**.
 
 ---
-*This project was developed as part of a journey into Full-Stack Development and AI integration.*
+<div align="center">
+  <p>Engineered with 🧠 in Saudi Arabia by <b>Redha Younes</b>.</p>
+  <p>&copy; 2026 All Rights Reserved.</p>
+</div>
